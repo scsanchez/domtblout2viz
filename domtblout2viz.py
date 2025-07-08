@@ -20,7 +20,6 @@ def createArgsParser():
     parser.add_argument('-f', '--filename', required=True, help='Input file name')
     parser.add_argument('-o', '--output', help='Output png file name. Defaults to filename-results.png')
     parser.add_argument('-l', '--limit', help='Limit the number of hits to draw. Defaults to all hits', type=int, default=None)
-    parser.add_argument('--overlap',action=argparse.BooleanOptionalAction, default=True, help='In case of overlapping only draws target name with the highest i-value. Defaults to True' )
     return parser
 
 def readFile(fileName, limit=None):
@@ -51,7 +50,6 @@ def readFile(fileName, limit=None):
             domain_number = int(parts[9])
             domain_total = int(parts[10])
             c_evalue = parts[11]
-            #i_evalue = parts[12]
             domain_score = float(parts[13])
             domain_bias = float(parts[14])
             hmm_from = int(parts[15])
@@ -102,7 +100,7 @@ def filterOverlappingElements(sequenceElements:list[Hit]):
 def findLowestEValueElement(overlappingElements: list[Hit]):
     lowestEValueElement:Hit=overlappingElements[0]
     for element in overlappingElements:
-           if lowestEValueElement['eValue'] > element['eValue']: #nos quedamos solo con el primero que encontramos >= seria para el ultimo
+           if lowestEValueElement['eValue'] > element['eValue']: 
                     lowestEValueElement = element
     return lowestEValueElement
 
@@ -163,5 +161,3 @@ if __name__ == "__main__":
             finalDict[sequence].append(lowestEValueElement)
 
     printGraph(finalDict, args.output)
-
-

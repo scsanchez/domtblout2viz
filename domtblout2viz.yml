@@ -2,7 +2,7 @@ name: domtblout2viz
 channels:
   - conda-forge
 dependencies:
-  - python=3.13.5
+  - python=3.11
   - pandas
   - matplotlib
   - argparse
