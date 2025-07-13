@@ -33,9 +33,9 @@ def readFile(fileName, limit=None):
             parts = line.strip().split(None, 22)
             if len(parts) < 23:
                 continue
-            
-            i_evalue = float(parts[12])
-            if i_evalue > 0.05:
+
+            full_seq_evalue = float(parts[6])
+            if full_seq_evalue > 0.05:
                 continue
 
             target_name = parts[0]
@@ -44,12 +44,12 @@ def readFile(fileName, limit=None):
             query_name = parts[3]
             query_accession = parts[4]
             qlen = int(parts[5])
-            full_seq_evalue = parts[6]
             full_seq_score = float(parts[7])
             full_seq_bias = float(parts[8])
             domain_number = int(parts[9])
             domain_total = int(parts[10])
             c_evalue = parts[11]
+            i_evalue = float(parts[12])
             domain_score = float(parts[13])
             domain_bias = float(parts[14])
             hmm_from = int(parts[15])
@@ -65,7 +65,7 @@ def readFile(fileName, limit=None):
                 data[query_name] = []
             data[query_name].append({
                 "targetName": target_name,
-                "eValue": i_evalue,
+                "eValue": full_seq_evalue,
                 "coord": {"from_": ali_from, "to": ali_to}
             })
             count += 1

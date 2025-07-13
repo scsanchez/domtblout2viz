@@ -54,5 +54,4 @@ This will generate `results.png` with a visual representation of the most signif
 ## Notes
 
 - Only hits with **i-evalue ≤ 0.05** are considered.
-- For overlapping domains in the same sequence, only the one with the lowest e-value is kept (unless deactivated).
 - The script saves the plot using `matplotlib` and displays it afterward.
